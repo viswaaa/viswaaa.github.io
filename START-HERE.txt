@@ -1,0 +1,14 @@
+VISWANADH PORTFOLIO
+Latest export: September 28, 2026
+
+Unzip this file and open index.html in your browser. Keep all files and the assets folder together.
+
+For hosting: upload the contents of Viswanadh-Portfolio so index.html is at the site root. No build command or dependencies are required. You can omit this guide from the upload.
+
+Edit index.html for the homepage, slow-boil.html for the film page, style.css and slow-boil.css for design. app.js controls the film stacks; bts.js controls the gallery. appearance.js controls appearance on the film page. Images are in assets.
+
+Includes contact details, software skills, camera credits, current project order, supplied stills, portrait, all ten BTS photos and the Slow Boil YouTube player. Between Here and There still needs a watch URL. Posters have not yet been supplied.
+
+YouTube playback needs an internet connection. If the embedded player is unavailable, use the Open on YouTube link.
+
+This is an independent copy. Local edits do not automatically update your hosted portfolio. No ChatGPT login or API key is required.
