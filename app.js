@@ -54,8 +54,24 @@ for (const panel of document.querySelectorAll('.film-stack-panel')) {
   const camera = panel.querySelector('.selected-camera');
   camera.textContent = active.dataset.camera ? 'Shot on ' + active.dataset.camera : '';
   camera.hidden = !active.dataset.camera;
-  panel.querySelector('.watch-pending').hidden = active.dataset.film !== 'between';
-  panel.querySelector('.watch-film').hidden = active.dataset.film !== 'slow';
+panel.querySelector('.watch-pending').hidden = true;
+
+const watch = panel.querySelector('.watch-film');
+const film = active.dataset.film;
+
+watch.hidden = !['between', 'slow'].includes(film);
+
+if (film === 'between') {
+  watch.href = 'https://youtu.be/AJ1X-8kLys0';
+  watch.textContent = '▶ Watch film';
+  watch.removeAttribute('aria-disabled');
+  watch.onclick = null;
+} else {
+  watch.removeAttribute('href');
+  watch.textContent = '▶ Watch film · Coming soon';
+  watch.setAttribute('aria-disabled', 'true');
+  watch.onclick = event => event.preventDefault();
+}
   panel.querySelector('.stack-counter').textContent = String(selected + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
   panel.querySelector('.stack-credits').hidden = active.dataset.film !== 'slow';
  }
@@ -70,3 +86,6 @@ for (const panel of document.querySelectorAll('.film-stack-panel')) {
  panel.querySelector('.stack-prev').addEventListener('click', () => selectCard(selected - 1));
  panel.querySelector('.stack-next').addEventListener('click', () => selectCard(selected + 1));
 }
+document.querySelectorAll('.film-stack-panel').forEach(panel => {
+  panel.querySelector('.stack-card')?.click();
+});
