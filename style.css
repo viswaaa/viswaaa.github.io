@@ -29,3 +29,6 @@
 
 /* Compact social links in the glass navigation. */
 .nav{width:min(620px,calc(100% - 36px));gap:14px}.nav-socials{display:flex;align-items:center;gap:4px}.nav-socials a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%}.nav-socials a:hover{background:var(--glass);opacity:1}.nav-socials svg{display:block;width:19px;height:19px}.nav .theme{flex-shrink:0}@media(max-width:540px){.nav{top:14px;height:auto;min-height:88px;padding:10px 16px;display:grid;grid-template-columns:1fr auto auto;gap:4px 12px;border-radius:26px}.nav nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:30px;padding:5px 0}.nav-socials{grid-column:2;grid-row:1}.nav .theme{grid-column:3;grid-row:1}.nav .monogram{grid-column:1;grid-row:1}}
+
+/* Keep profile links beside the portfolio logo. */
+.nav-brand{display:flex;align-items:center;gap:14px;flex-shrink:0}.nav-brand .monogram{flex-shrink:0}@media(max-width:540px){.nav{grid-template-columns:1fr auto}.nav-brand{grid-column:1;grid-row:1;gap:10px}.nav .theme{grid-column:2;grid-row:1}}
