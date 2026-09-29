@@ -21,3 +21,5 @@
 .watch-film{font-size:14px;padding:10px 14px;border:1px solid var(--line);border-radius:24px;background:var(--glass)}.watch-film:hover{background:var(--ink);color:var(--bg)}
   .two-still{position:absolute;right:0;top:0;width:76%;height:100%;object-fit:cover;object-position:52% 30%;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.25) 20%,#000 55%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.25) 20%,#000 55%)}
   @media(max-width:700px){.two-still{width:85%;object-position:52% 30%;-webkit-mask-image:linear-gradient(to right,transparent,#000 70%);mask-image:linear-gradient(to right,transparent,#000 70%)}}
+.stack-card.two{overflow:hidden;isolation:isolate}
+.stack-card.two .stack-title,.stack-card.two .stack-credit,.stack-card.two .layer-label{text-shadow:0 2px 16px #1d171c}
