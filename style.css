@@ -38,3 +38,7 @@
 .nav nav{gap:24px;margin-left:auto;white-space:nowrap}
 .nav .theme{flex-shrink:0}
 @media(max-width:580px){.nav{top:14px;height:auto;padding:14px 18px;display:grid;grid-template-columns:1fr auto;gap:12px;border-radius:26px}.nav-brand{grid-column:1;grid-row:1;gap:14px}.nav .theme{grid-column:2;grid-row:1}.nav nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:30px;margin:0;padding-top:10px;border-top:1px solid var(--line)}}
+.stack-card[data-href][aria-pressed="true"]::after{content:"Explore film ↗";position:absolute;right:24px;bottom:22px;font-size:13px;padding:10px 16px;border-radius:24px;background:#17100cb0;border:1px solid #ffffff40;color:#e9ddc7;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .2s,transform .2s}
+.stack-card[data-href][aria-pressed="true"]:hover::after{background:#17100ce6;transform:translateY(-2px)}
+@media(max-width:700px){.stack-card[data-href][aria-pressed="true"]::after{right:16px;bottom:16px;font-size:12px;padding:8px 13px}}
+.stack-controls .stack-credits{display:none!important}
