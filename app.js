@@ -98,6 +98,70 @@ for (const panel of document.querySelectorAll('.film-stack-panel')) {
  selectCard(0);
  panel.querySelector('.stack-prev').addEventListener('click', () => selectCard(selected - 1));
  panel.querySelector('.stack-next').addEventListener('click', () => selectCard(selected + 1));
+}
+for (const panel of document.querySelectorAll('.film-stack-panel')) {
+ const cards = [...panel.querySelectorAll('.stack-card')];
+ let selected = 0;
+ const actions = document.createElement('div');
+ actions.className = 'card-actions';
+ panel.querySelector('.film-stack').append(actions);
+ function renderActions(card) {
+  actions.replaceChildren();
+  const watchUrl = card.dataset.watch;
+  const pageUrl = card.dataset.href;
+  if (card.dataset.film === 'between' || watchUrl) {
+   const watch = document.createElement(watchUrl ? 'a' : 'span');
+   if (watchUrl) { watch.href = watchUrl; watch.textContent = '▶ Watch film'; }
+   else { watch.className = 'is-pending'; watch.textContent = 'Watch link coming soon'; }
+   actions.append(watch);
+  }
+  if (pageUrl) {
+   const explore = document.createElement('a');
+   explore.href = pageUrl; explore.textContent = 'Explore film ↗';
+   actions.append(explore);
+  }
+ }
+ function selectCard(index) {
+  selected = (index + cards.length) % cards.length;
+  const others = cards.filter((_, i) => i !== selected);
+  for (const [i, card] of cards.entries()) {
+   const depth = i === selected ? cards.length - 1 : others.indexOf(card);
+   card.style.setProperty('--depth', depth);
+   card.style.zIndex = depth + 1;
+   card.dataset.depth = depth;
+   card.setAttribute('aria-pressed', String(i === selected));
+  }
+  const active = cards[selected];
+  renderActions(active);
+  panel.querySelector('.stack-description h3').textContent = active.dataset.title;
+  panel.querySelector('.stack-description p').textContent = active.dataset.role;
+  const camera = panel.querySelector('.selected-camera');
+  camera.textContent = active.dataset.camera ? 'Shot on ' + active.dataset.camera : '';
+  camera.hidden = !active.dataset.camera;
+  const watch = panel.querySelector('.watch-film');
+  const watchUrl = active.dataset.watch;
+  watch.hidden = !watchUrl;
+  if (watchUrl) watch.href = watchUrl;
+  panel.querySelector('.watch-pending').hidden = active.dataset.film !== 'between' || Boolean(watchUrl);
+  panel.querySelector('.stack-counter').textContent = String(selected + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
+  const explore = panel.querySelector('.stack-credits');
+  explore.hidden = !active.dataset.href;
+  if (active.dataset.href) explore.href = active.dataset.href;
+ }
+ cards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+   if (index === selected && card.dataset.href) { window.location.href = card.dataset.href; return; }
+   selectCard(index);
+  });
+  card.addEventListener('keydown', event => {
+   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    event.preventDefault(); selectCard(selected + (event.key === 'ArrowRight' ? 1 : -1)); cards[selected].focus({preventScroll:true});
+   }
+  });
+ });
+ selectCard(0);
+ panel.querySelector('.stack-prev').addEventListener('click', () => selectCard(selected - 1));
+ panel.querySelector('.stack-next').addEventListener('click', () => selectCard(selected + 1));
 }  panel.querySelector('.stack-counter').textContent = String(selected + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
   const explore = panel.querySelector('.stack-credits');
   explore.hidden = !active.dataset.href;
